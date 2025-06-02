@@ -88,30 +88,33 @@
     <label for="00NKd00000vDyUh">To Destination *</label>
     <input id="00NKd00000vDyUh" name="00NKd00000vDyUh" maxlength="50" type="text" required>
 
-<label for="00NKd00000vDyV1">Visiting Date *</label>
-<input id="00NKd00000vDyV1" name="00NKd00000vDyV1" size="12" type="text" required />
+    <!-- Visiting Date -->
+	<label for="00NKd00000vDyV1">Preferred Travel Date *</label>
+	<input id="00NKd00000vDyV1" name="00NKd00000vDyV1" type="date" required />
+	
+	<!-- Budget as Picklist -->
+	<label for="00NKd00000vDyUm">Estimated Budget (AED) *</label>
+	<select id="00NKd00000vDyUm" name="00NKd00000vDyUm" required>
+	  <option value="">-- Select Budget --</option>
+	  <option value="Less than 5,000 AED">Less than 5,000 AED</option>
+	  <option value="5,000 - 10,000 AED">5,000 - 10,000 AED</option>
+	  <option value="10,000 - 20,000 AED">10,000 - 20,000 AED</option>
+	  <option value="Above 20,000 AED">Above 20,000 AED</option>
+	</select>
+	
+	<!-- No. of People -->
+	<label for="00NKd00000vDyUr">Number of Passengers</label>
+	<input id="00NKd00000vDyUr" name="00NKd00000vDyUr" type="text">
+	
+	<!-- Kuwait ID -->
+	<label for="00NKd00000vDyBA">Civil ID / Kuwait ID</label>
+	<input id="00NKd00000vDyBA" name="00NKd00000vDyBA" maxlength="50" type="text">
+	
+	<!-- Passport Number -->
+	<label for="00NKd00000vDyB5">Passport Number</label>
+	<input id="00NKd00000vDyB5" name="00NKd00000vDyB5" maxlength="50" type="text">
 
-
-    <!-- Optional Fields -->
-    <label for="00NKd00000vDyUm">Budget (AED)</label>
-    <select id="00NKd00000vDyUm" name="00NKd00000vDyUm" required>
-      <option value="">-- Select Budget --</option>
-      <option value="Less than 5,000 AED">Less than 5,000 AED</option>
-      <option value="5,000 - 10,000 AED">5,000 - 10,000 AED</option>
-      <option value="10,000 - 20,000 AED">10,000 - 20,000 AED</option>
-      <option value="Above 20,000 AED">Above 20,000 AED</option>
-    </select>
-
-
-    <label for="00NKd00000vDyUr">No of People Travelling</label>
-    <input id="00NKd00000vDyUr" name="00NKd00000vDyUr" type="text">
-
-    <label for="00NKd00000vDyBA">Kuwait ID</label>
-    <input id="00NKd00000vDyBA" name="00NKd00000vDyBA" maxlength="50" type="text">
-
-    <label for="00NKd00000vDyB5">Passport Number</label>
-    <input id="00NKd00000vDyB5" name="00NKd00000vDyB5" maxlength="50" type="text">
-
+	  
     <input type="submit" value="Submit">
   </form>
 </div>
