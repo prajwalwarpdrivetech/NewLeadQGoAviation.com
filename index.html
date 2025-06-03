@@ -90,8 +90,9 @@
     <input type="hidden" name="retURL" value="http://www.qgogroup.com" />
     <input type="hidden" name="lead_source" value="Website" />
 
+    <!-- Business Division -->
     <label for="business_division">Business Division *</label>
-    <select id="business_division" name="00NKd00000vDyZZ" required>
+    <select id="business_division" name="00NKd00000vELcP" required>
       <option value="">-- Select Division --</option>
       <option value="Cargo">Cargo</option>
       <option value="Leisure">Leisure</option>
@@ -99,6 +100,7 @@
       <option value="Concierge">Concierge</option>
     </select>
 
+    <!-- Customer Type -->
     <label for="customer_type">Customer Type *</label>
     <select id="customer_type" name="00NKd00000vDyYY" required>
       <option value="">-- Select Customer Type --</option>
@@ -127,8 +129,10 @@
     <label for="arrival_city">Arrival City *</label>
     <select id="arrival_city" name="00NKd00000vDyUh" required></select>
 
-    <label for="travel_date">Preferred Travel Date *</label>
-    <input id="travel_date" name="00NKd00000vDyV1" type="date" required />
+    <!-- Preferred Travel Date -->
+    <label for="calendar_date_input">Preferred Travel Date *</label>
+    <input id="calendar_date_input" type="date" required />
+    <input type="hidden" id="sf_travel_date" name="00NKd00000vDyV1" />
 
     <label for="budget">Estimated Budget (AED) *</label>
     <select id="budget" name="00NKd00000vDyUm" required>
@@ -192,13 +196,6 @@
 
     $('#departure_city, #arrival_city').on('change', validateCities);
 
-    $('#travel-form').on('submit', function (e) {
-      if ($('#departure_city').val() === $('#arrival_city').val()) {
-        alert("Departure and Arrival cities cannot be the same.");
-        e.preventDefault();
-      }
-    });
-
     $('#customer_type').on('change', function () {
       const type = $(this).val();
       const companyField = $('#company');
@@ -208,6 +205,12 @@
       } else {
         companyField.prop('disabled', false);
       }
+    });
+
+    // Copy selected date into hidden field
+    $('#travel-form').on('submit', function () {
+      const selectedDate = $('#calendar_date_input').val(); // e.g., 2025-06-03
+      $('#sf_travel_date').val(selectedDate);
     });
   });
 </script>
