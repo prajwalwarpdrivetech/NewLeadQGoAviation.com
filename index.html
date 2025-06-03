@@ -99,8 +99,6 @@
       <option value="Concierge">Concierge</option>
     </select>
 
-
-
     <!-- Customer Type -->
     <label for="customer_type">Customer Type *</label>
     <select id="customer_type" name="00NKd00000vDyYY" required>
@@ -132,8 +130,7 @@
 
     <!-- Preferred Travel Date -->
     <label for="calendar_date_input">Preferred Travel Date *</label>
-    <input id="calendar_date_input" type="date" required />
-    <input type="hidden" id="sf_travel_date" name="00NKd00000vDyV1" />
+    <input id="calendar_date_input" name="00NKd00000vDyV1" type="date" required />
 
     <label for="budget">Estimated Budget (AED) *</label>
     <select id="budget" name="00NKd00000vDyUm" required>
@@ -206,12 +203,6 @@
       } else {
         companyField.prop('disabled', false);
       }
-    });
-
-    // Copy selected date into hidden field
-    $('#travel-form').on('submit', function () {
-      const selectedDate = $('#calendar_date_input').val(); // e.g., 2025-06-03
-      $('#sf_travel_date').val(selectedDate);
     });
   });
 </script>
