@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>QGO Aviation - Travel Inquiry Form</title>
-  
+
   <!-- Select2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -74,7 +74,6 @@
       background-color: #003f7a;
     }
 
-    /* Fix Select2 to full width */
     .select2-container {
       width: 100% !important;
     }
@@ -91,6 +90,22 @@
     <input type="hidden" name="retURL" value="http://www.qgogroup.com" />
     <input type="hidden" name="lead_source" value="Website" />
 
+    <label for="business_division">Business Division *</label>
+    <select id="business_division" name="00NKd00000vDyZZ" required>
+      <option value="">-- Select Division --</option>
+      <option value="Cargo">Cargo</option>
+      <option value="Leisure">Leisure</option>
+      <option value="Corporate">Corporate</option>
+      <option value="Concierge">Concierge</option>
+    </select>
+
+    <label for="customer_type">Customer Type *</label>
+    <select id="customer_type" name="00NKd00000vDyYY" required>
+      <option value="">-- Select Customer Type --</option>
+      <option value="B2B">B2B</option>
+      <option value="B2C">B2C</option>
+    </select>
+
     <label for="first_name">First Name *</label>
     <input id="first_name" name="first_name" maxlength="40" type="text" required />
 
@@ -106,10 +121,10 @@
     <label for="company">Company / Organization</label>
     <input id="company" name="company" type="text" maxlength="40" required />
 
-    <label for="departure_city">Departure City  *</label>
+    <label for="departure_city">Departure City *</label>
     <select id="departure_city" name="00NKd00000vDyUc" required></select>
 
-    <label for="arrival_city">Arrival City  *</label>
+    <label for="arrival_city">Arrival City *</label>
     <select id="arrival_city" name="00NKd00000vDyUh" required></select>
 
     <label for="travel_date">Preferred Travel Date *</label>
@@ -134,53 +149,40 @@
   </form>
 </div>
 
-<!-- jQuery (required for Select2) -->
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-  // List of ~250 international cities relevant for Indian/Kuwaiti travellers
   const cities = [
     "Abu Dhabi", "Ahmedabad", "Al Ain", "Amman", "Athens", "Baghdad", "Bahrain", "Bangkok",
-    "Bangalore", "Baroda", "Beirut", "Benghazi", "Berlin", "Bhopal", "Brisbane", "Brussels",
-    "Bucharest", "Budapest", "Cairo", "Calicut", "Chandigarh", "Chennai", "Colombo", "Copenhagen",
-    "Damascus", "Delhi", "Doha", "Dubai", "Dublin", "Durban", "Frankfurt", "Geneva",
-    "Goa", "Gothenburg", "Guwahati", "Hamburg", "Helsinki", "Hong Kong", "Hyderabad", "Istanbul",
-    "Jakarta", "Jeddah", "Johannesburg", "Kochi", "Kolkata", "Kuwait City", "Lagos", "Lahore",
-    "Larnaca", "Lhasa", "Lisbon", "London", "Los Angeles", "Ludhiana", "Lyon", "Madurai",
-    "Malé", "Manama", "Manila", "Marrakech", "Melbourne", "Mexico City", "Milan", "Mumbai",
-    "Muscat", "Nagpur", "Nairobi", "New Delhi", "New York", "Nice", "Oslo", "Ottawa",
-    "Paris", "Perth", "Phuket", "Pune", "Quebec", "Quito", "Riyadh", "Rome",
-    "San Francisco", "Santiago", "Sapporo", "Seoul", "Shanghai", "Singapore", "Stockholm", "Sydney",
-    "Taipei", "Tehran", "Tel Aviv", "Thimphu", "Tokyo", "Toronto", "Tripoli", "Vancouver",
-    "Vienna", "Warsaw", "Washington D.C.", "Zurich",
-    // Add more cities to reach ~250 as needed...
+    "Bangalore", "Baroda", "Beirut", "Berlin", "Brussels", "Budapest", "Cairo", "Chandigarh",
+    "Chennai", "Colombo", "Copenhagen", "Delhi", "Doha", "Dubai", "Dublin", "Frankfurt",
+    "Geneva", "Goa", "Hamburg", "Helsinki", "Hong Kong", "Hyderabad", "Istanbul", "Jakarta",
+    "Jeddah", "Johannesburg", "Kochi", "Kolkata", "Kuwait City", "Lagos", "Lahore", "Lisbon",
+    "London", "Los Angeles", "Malé", "Manama", "Manila", "Melbourne", "Mexico City", "Milan",
+    "Mumbai", "Muscat", "Nagpur", "Nairobi", "New Delhi", "New York", "Oslo", "Paris", "Perth",
+    "Phuket", "Pune", "Riyadh", "Rome", "San Francisco", "Seoul", "Shanghai", "Singapore",
+    "Stockholm", "Sydney", "Taipei", "Tehran", "Tel Aviv", "Tokyo", "Toronto", "Vienna",
+    "Warsaw", "Washington D.C.", "Zurich"
   ];
 
-  // Convert cities array to option elements
   function generateOptions() {
     return cities.map(city => `<option value="${city}">${city}</option>`).join('');
   }
 
-  // Initialize Select2 dropdowns
   $(document).ready(function () {
     const optionsHtml = generateOptions();
 
     $('#departure_city').html('<option value="">-- Select Departure City --</option>' + optionsHtml);
     $('#arrival_city').html('<option value="">-- Select Arrival City --</option>' + optionsHtml);
 
-    $('#departure_city').select2({
-      placeholder: "Select Departure City",
+    $('#departure_city, #arrival_city').select2({
+      placeholder: "Select a City",
       allowClear: true
     });
 
-    $('#arrival_city').select2({
-      placeholder: "Select Arrival City",
-      allowClear: true
-    });
-
-    // Prevent selecting same city for departure and arrival
     function validateCities() {
       if ($('#departure_city').val() && $('#departure_city').val() === $('#arrival_city').val()) {
         alert("Departure and Arrival cities cannot be the same.");
@@ -188,14 +190,23 @@
       }
     }
 
-    $('#departure_city').on('change', validateCities);
-    $('#arrival_city').on('change', validateCities);
+    $('#departure_city, #arrival_city').on('change', validateCities);
 
-    // Optional: prevent form submit if cities are same
     $('#travel-form').on('submit', function (e) {
-      if ($('#departure_city').val() && $('#departure_city').val() === $('#arrival_city').val()) {
+      if ($('#departure_city').val() === $('#arrival_city').val()) {
         alert("Departure and Arrival cities cannot be the same.");
         e.preventDefault();
+      }
+    });
+
+    $('#customer_type').on('change', function () {
+      const type = $(this).val();
+      const companyField = $('#company');
+      if (type === 'B2C') {
+        companyField.val('');
+        companyField.prop('disabled', true);
+      } else {
+        companyField.prop('disabled', false);
       }
     });
   });
