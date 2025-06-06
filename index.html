@@ -7,6 +7,9 @@
   <!-- Select2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+  <!-- Flatpickr CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -129,8 +132,8 @@
     <select id="arrival_city" name="00NKd00000vDyUh" required></select>
 
     <!-- Preferred Travel Date -->
-    <label for="calendar_date_input">Preferred Travel Date *</label>
-    <input id="calendar_date_input" name="00NKd00000vDyV1" type="date" required />
+    <label for="preferred_travel_date">Preferred Travel Date *</label>
+    <input id="preferred_travel_date" name="00NKd00000vDyV1" type="text" required />
 
     <label for="budget">Estimated Budget (AED) *</label>
     <select id="budget" name="00NKd00000vDyUm" required>
@@ -155,6 +158,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
   const cities = [
@@ -204,7 +209,14 @@
         companyField.prop('disabled', false);
       }
     });
+
+    // Flatpickr initialization
+    flatpickr("#preferred_travel_date", {
+      dateFormat: "Y-m-d",
+      minDate: "today"
+    });
   });
 </script>
+
 </body>
 </html>
