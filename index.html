@@ -7,6 +7,9 @@
   <!-- Select2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+  <!-- Flatpickr CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -110,13 +113,16 @@
     <label for="phone">Phone Number *</label>
     <input id="phone" name="phone" maxlength="40" type="tel" required />
 
+    <label for="company">Company / Organization</label>
+    <input id="company" name="company" type="text" maxlength="40" required />
+
     <label for="departure_city">Departure City *</label>
     <select id="departure_city" name="00NKd00000vDyUc" required></select>
 
     <label for="arrival_city">Arrival City *</label>
     <select id="arrival_city" name="00NKd00000vDyUh" required></select>
 
-    <!-- Visiting Date (new field) -->
+    <!-- Visiting Date -->
     <label for="visiting_date">Visiting Date *</label>
     <input id="visiting_date" name="00NKd00000vEPM1" type="text" required />
 
@@ -143,6 +149,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
   const cities = [
@@ -181,6 +189,12 @@
     }
 
     $('#departure_city, #arrival_city').on('change', validateCities);
+
+    // Initialize Flatpickr on Visiting Date
+    flatpickr("#visiting_date", {
+      dateFormat: "Y-m-d",
+      minDate: "today"
+    });
   });
 </script>
 
