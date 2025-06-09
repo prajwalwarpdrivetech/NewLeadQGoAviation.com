@@ -7,9 +7,6 @@
   <!-- Select2 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-  <!-- Flatpickr CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
-
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -50,7 +47,6 @@
     input[type="text"],
     input[type="email"],
     input[type="tel"],
-    input[type="date"],
     select {
       width: 100%;
       padding: 10px 12px;
@@ -102,14 +98,6 @@
       <option value="Concierge">Concierge</option>
     </select>
 
-    <!-- Customer Type -->
-    <label for="customer_type">Customer Type *</label>
-    <select id="customer_type" name="00NKd00000vDyYY" required>
-      <option value="">-- Select Customer Type --</option>
-      <option value="B2B">B2B</option>
-      <option value="B2C">B2C</option>
-    </select>
-
     <label for="first_name">First Name *</label>
     <input id="first_name" name="first_name" maxlength="40" type="text" required />
 
@@ -122,26 +110,26 @@
     <label for="phone">Phone Number *</label>
     <input id="phone" name="phone" maxlength="40" type="tel" required />
 
-    <label for="company">Company / Organization</label>
-    <input id="company" name="company" type="text" maxlength="40" required />
-
     <label for="departure_city">Departure City *</label>
     <select id="departure_city" name="00NKd00000vDyUc" required></select>
 
     <label for="arrival_city">Arrival City *</label>
     <select id="arrival_city" name="00NKd00000vDyUh" required></select>
 
-    <!-- Preferred Travel Date -->
     <label for="preferred_travel_date">Preferred Travel Date *</label>
     <input id="preferred_travel_date" name="00NKd00000vDyV1" type="text" required />
 
-    <label for="budget">Estimated Budget (KWD) *</label>
+    <!-- Visiting Date (new field) -->
+    <label for="visiting_date">Visiting Date *</label>
+    <input id="visiting_date" name="00NKd00000vEPM1" type="text" required />
+
+    <label for="budget">Estimated Budget (AED) *</label>
     <select id="budget" name="00NKd00000vDyUm" required>
       <option value="">-- Select Budget --</option>
-      <option value="Less than 5,000 KWD">Less than 5,000 KWD</option>
-      <option value="5,000 - 10,000 KWD">5,000 - 10,000 KWD</option>
-      <option value="10,000 - 20,000 KWD">10,000 - 20,000 KWD</option>
-      <option value="Above 20,000 KWD">Above 20,000 KWD</option>
+      <option value="Less than 5,000 AED">Less than 5,000 AED</option>
+      <option value="5,000 - 10,000 AED">5,000 - 10,000 AED</option>
+      <option value="10,000 - 20,000 AED">10,000 - 20,000 AED</option>
+      <option value="Above 20,000 AED">Above 20,000 AED</option>
     </select>
 
     <label for="num_passengers">Number of Passengers</label>
@@ -158,8 +146,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
   const cities = [
@@ -198,23 +184,6 @@
     }
 
     $('#departure_city, #arrival_city').on('change', validateCities);
-
-    $('#customer_type').on('change', function () {
-      const type = $(this).val();
-      const companyField = $('#company');
-      if (type === 'B2C') {
-        companyField.val('');
-        companyField.prop('disabled', true);
-      } else {
-        companyField.prop('disabled', false);
-      }
-    });
-
-    // Flatpickr initialization
-    flatpickr("#preferred_travel_date", {
-      dateFormat: "Y-m-d",
-      minDate: "today"
-    });
   });
 </script>
 
